@@ -44,37 +44,38 @@ fail()
  
 注意：上面的每一个方法，都有一个重载的方法，可以在前面加一个String类型的参数，表示如果验证失败的话，将用这个字符串作为失败的结果报告。
 比如：
-assertEquals("Current user Id should be 1", 1, currentUser.id());
+
+	assertEquals("Current user Id should be 1", 1, currentUser.id());
+
 当currentUser.id()的值不是1的时候，在结果报道里面将显示"Current user Id should be 1"，这样可以让测试结果更具有可读性，更清楚错误的原因是什么。
  
 ## JUnit Rule
 一个JUnit Rule就是一个实现了TestRule的类，这些类的作用类似于@Before、@After，是用来在每个测试方法的执行前后执行一些代码的一个方法。
 自带使用
-```
-@Rule
-public Timeout timeout = new Timeout(1000);
-```
+
+	@Rule
+	public Timeout timeout = new Timeout(1000);
+
 扩展
-```
-    public class MethodNameExample implements TestRule {
-        @Override
-        public Statement apply(final Statement base, final Description description) {
-            return new Statement() {
-                @Override
-                public void evaluate() throws Throwable {
-                    //想要在测试方法运行之前做一些事情，就在base.evaluate()之前做
-                    String className = description.getClassName();
-                    String methodName = description.getMethodName();
- 
-                    base.evaluate();  //这其实就是运行测试方法
- 
-                    //想要在测试方法运行之后做一些事情，就在base.evaluate()之后做
-                    System.out.println("Class name: "+className +", method name: "+methodName);
-                }
-            };
-        }
-    }
- 
-    @Rule
-    public MethodNameExample methodNameExample = new MethodNameExample();
-```
+
+	    public class MethodNameExample implements TestRule {
+	        @Override
+	        public Statement apply(final Statement base, final Description description) {
+	            return new Statement() {
+	                @Override
+	                public void evaluate() throws Throwable {
+	                    //想要在测试方法运行之前做一些事情，就在base.evaluate()之前做
+	                    String className = description.getClassName();
+	                    String methodName = description.getMethodName();
+	 
+	                    base.evaluate();  //这其实就是运行测试方法
+	 
+	                    //想要在测试方法运行之后做一些事情，就在base.evaluate()之后做
+	                    System.out.println("Class name: "+className +", method name: "+methodName);
+	                }
+	            };
+	        }
+	    }
+	 
+	    @Rule
+	    public MethodNameExample methodNameExample = new MethodNameExample();
