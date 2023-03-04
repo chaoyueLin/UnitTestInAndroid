@@ -199,3 +199,7 @@ MockK 是一个用 Kotlin 写的 Mocking 框架。在kotlin环境下, 建议针�
 4，mockkStatic
 
      mockkStatic(StaticClass::class)
+
+
+因为Kotlin中有 协程 这个特性，所以单元测试在执行时可能会遇到执行协程中代码的问题，这个时候如果需要监听，则需要使用 coEvery{ ... }
+除了 coEvery{...} ， 还有 coVerify{...}、 coRun、 coAssert 、 coAnswer、coInvoke 等用于协程中的方法。

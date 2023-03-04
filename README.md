@@ -46,13 +46,10 @@
 ![](http://7xod3k.com1.z0.glb.clouddn.com/qtijqabixtlihxsuujkwnlzelrqnwqnz)
  
 ## 为啥要做单元测试
-一方面，在开发中情况是这样的，经常要功能开发到最后，才能进去测试，可能后台接口没有准备好，debug也需要从头开始一步步下来。项目一大，编译运行app都会很耗时，这种情况需要改进。
-另一方面，当你为自己的代码写单元测试的时候，尤其是采用TDD的方式，你会很自觉地把每个类写的比较小，功能单一，这是软件设计里面很重要的SRP原则。
- 
-《重构：改善现有代码的艺术》里面的一段话：
->
-I've found that writing good tests greatly speeds my programming, even if I'm not refactoring. This was a surprise for me, and it is counterintuitive for many programmers...
---Martin Fowler 《Refactoring: Improving the Design of Existing Code》
+1.快速反馈bug，跑一遍单元测试用例，定位bug
+2.设别依赖
+3.回归验证
+
  
 ## Android单元测试需要用到哪些技术
 JUnit4 + Mockito + Dagger2 + Robolectric。
@@ -75,3 +72,12 @@ Android单元测试最大的痛点，那就是JVM上面运行纯JUnit单元测�
 1. 使用Android提供的Instrumentation系统，将单元测试代码运行在模拟器或者是真机上。
 2. 用一定的架构，比如MVP等等，将安卓相关的代码隔离开了，中间的Presenter或Model是存java实现的，可以在JVM上面测试。View或其他android相关的代码则不测。
 3. 使用Robolectric框架，这个框架基本可以理解为在JVM上面实现了一套安卓的模拟环境，同时给安卓相关的类增加了其他一些增强的功能，以方便做单元测试，使用这个框架，我们就可以在JVM上面跑单元测试的时候，就可以使用安卓相关的类了。
+
+## 单元测试原则，FIRST
+F——Fast：快速
+在调试bug时，需要频繁去运行单元测试验证结果是否正确。如果单元测试足够快速，就可以省去不必要浪费的时间，提高工作效率。
+I——Isolated：隔离
+R——Repeatable：可重复
+单元测试需要保持运行稳定，每次运行都需要得到同样的结果，如果间歇性的失败，会导致我们不断的去查看这个测试，不可靠的测试也就失去了意义。
+S——Self-verifying：自我验证
+T——Timely：及时
