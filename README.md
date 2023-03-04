@@ -46,9 +46,9 @@
 ![](http://7xod3k.com1.z0.glb.clouddn.com/qtijqabixtlihxsuujkwnlzelrqnwqnz)
  
 ## 为啥要做单元测试
-1.快速反馈bug，跑一遍单元测试用例，定位bug
-2.设别依赖
-3.回归验证
+* 快速反馈bug，跑一遍单元测试用例，定位bug
+* 设别依赖
+* 回归验证
 
  
 ## Android单元测试需要用到哪些技术
@@ -76,8 +76,12 @@ Android单元测试最大的痛点，那就是JVM上面运行纯JUnit单元测�
 ## 单元测试原则，FIRST
 F——Fast：快速
 在调试bug时，需要频繁去运行单元测试验证结果是否正确。如果单元测试足够快速，就可以省去不必要浪费的时间，提高工作效率。
+
 I——Isolated：隔离
+
 R——Repeatable：可重复
 单元测试需要保持运行稳定，每次运行都需要得到同样的结果，如果间歇性的失败，会导致我们不断的去查看这个测试，不可靠的测试也就失去了意义。
+
 S——Self-verifying：自我验证
+
 T——Timely：及时
